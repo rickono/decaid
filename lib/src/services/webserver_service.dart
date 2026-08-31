@@ -101,6 +101,7 @@ import 'package:mime/mime.dart';
 import 'package:path/path.dart' as p;
 import 'package:reaprime/src/models/device/device.dart' as device;
 
+import 'api_server_config.dart';
 import 'webserver/feedback_handler.dart';
 
 part 'webserver/de1handler.dart';
@@ -375,7 +376,7 @@ Future<void> startWebServer(
       updateHandler,
     ),
     '0.0.0.0',
-    8080,
+    apiServerPort,
   );
   log.info('API Web server running on ${server.address.host}:${server.port}');
 
