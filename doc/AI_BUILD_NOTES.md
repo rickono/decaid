@@ -1,5 +1,11 @@
 # AI Build Notes
 
+## Local API port
+
+`scripts/sb-dev.sh` runs the development API server on port 8081 by default
+and passes the selected `SB_PORT` through `--dart-define=apiPort`. Direct
+production builds retain Decaid's port 8080 fallback when `apiPort` is absent.
+
 Read this when building, running, flashing, or touching platform configuration. Skip it for pure Dart/logic changes that don't touch native code or build tooling.
 
 ## Common Commands

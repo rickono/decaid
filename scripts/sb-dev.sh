@@ -10,7 +10,7 @@ LOGFILE="$RUNTIME_DIR/flutter.log"
 FLAGSFILE="$RUNTIME_DIR/last-flags"
 ADB_FORWARD_MARK="$RUNTIME_DIR/adb-forwarded"
 HOST="${SB_HOST:-localhost}"
-PORT="${SB_PORT:-8080}"
+PORT="${SB_PORT:-8081}"
 BASE_URL="http://$HOST:$PORT"
 
 if ! command -v jq >/dev/null 2>&1; then
@@ -61,7 +61,7 @@ Flags:
 Env:
   SB_RUNTIME_DIR  runtime state directory (default: /tmp/decent-$USER)
   SB_HOST         host for curl checks (default: localhost)
-  SB_PORT         port for curl checks (default: 8080)
+  SB_PORT         API server and curl-check port (default: 8081)
 EOF
 }
 
@@ -185,6 +185,7 @@ start_cmd() {
 
   local -a defines=()
   [[ "$real" -eq 0 ]] && defines+=("--dart-define=simulate=1")
+  defines+=("--dart-define=apiPort=$PORT")
   if [[ "$real" -eq 0 && -n "$machine" ]]; then
     defines+=("--dart-define=preferredMachineId=$machine")
   fi
